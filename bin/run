@@ -1,12 +1,6 @@
 #!/usr/bin/env node
 
-process.env.NODE_ENV = 'development';
-
-const oclif = require('@oclif/core');
-
-oclif.run()
-  .then(require('@oclif/core/flush'))
-  .catch((err) => {
-    const oclifHandler = require('@oclif/core/handle');
-    return oclifHandler(err.message);
-  });
+(async () => {
+  const oclif = await import('@oclif/core');
+  await oclif.execute({dir: __dirname, development: true});
+})();
